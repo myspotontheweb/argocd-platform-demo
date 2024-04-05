@@ -20,4 +20,4 @@ kubectl --context $PILOT_CONTEXT create ingress argocd  --class=traefik --rule=/
 #
 # Print login details
 #
-kubectl -n argocd get secret argocd-initial-admin-secret -ogo-template='{{printf "\nurl: http://localhost:8080/argocd\nuser: admin\npass: %s\n" (.data.password|base64decode)}}'
+kubectl --context $PILOT_CONTEXT get secret argocd-initial-admin-secret -n argocd  -ogo-template='{{printf "\nurl: http://localhost:8080/argocd\nuser: admin\npass: %s\n" (.data.password|base64decode)}}'
