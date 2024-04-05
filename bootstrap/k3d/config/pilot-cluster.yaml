@@ -1,0 +1,12 @@
+apiVersion: k3d.io/v1alpha5
+kind: Simple 
+metadata:
+  name: pilot-cluster
+servers: 1
+agents: 2 
+kubeAPI: 
+  hostPort: "6445" 
+ports:
+  - port: 8080:80 
+    nodeFilters:
+      - loadbalancer

@@ -1,2 +1,31 @@
 # argocd-platform-demo
-A repo to demonstrate how a argocd based platform can operate
+
+## Description
+
+## Getting started
+
+### Dependencies
+
+System dependencies
+
+* [Docker](https://docs.docker.com/engine/install/ubuntu/)
+
+Install the following tools using [arkade](https://github.com/alexellis/arkade)
+
+```
+ark get kubectl helm k3d argocd
+```
+
+### Installation
+
+Bootstrap the K8s cluster(s)
+
+```
+./bootstrap/k3d/run.sh
+```
+
+### Execution
+
+## Help
+
+## Version History
