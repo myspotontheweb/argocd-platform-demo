@@ -8,7 +8,7 @@ spec:
   - clusters: {}
   template:
     metadata:
-      name: '{{.name}}-cert-manager'
+      name: '{{name}}-cert-manager'
     spec:
       project: "platform"
       source:
