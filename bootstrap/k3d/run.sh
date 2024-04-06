@@ -8,7 +8,7 @@ ARGOCD_VERSION=6.7.9
 #
 # Create cluster(s)
 #
-k3d cluster create --config $BASE_DIR/config/pilot-cluster.yaml
+k3d cluster create --config $BASE_DIR/config/management-cluster.yaml
 
 #
 # Install ArgoCD + configure an ingress to expose without tls

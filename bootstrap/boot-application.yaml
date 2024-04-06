@@ -1,10 +1,10 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: bootstrap-services
+  name: bootstrap-platform
   namespace: argocd
 spec:
-  project: default
+  project: platform
   source:
     repoURL: https://github.com/myspotontheweb/argocd-platform-demo.git
     targetRevision: HEAD
