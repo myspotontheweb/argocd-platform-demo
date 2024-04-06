@@ -17,7 +17,7 @@ helm upgrade --install argo-cd argo-cd --repo https://argoproj.github.io/argo-he
 kubectl create ingress argocd  --class=traefik --rule=/argocd*=argo-cd-argocd-server:80 --annotation ingress.kubernetes.io/ssl-redirect=false -n argocd
 
 #
-# Bootstrap services
+# Bootstrap platform services
 #
 kubectl apply -f $BASE_DIR/../boot-project.yaml
 kubectl apply -f $BASE_DIR/../boot-application.yaml
