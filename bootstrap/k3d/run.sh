@@ -6,7 +6,7 @@ BASE_DIR=$(dirname $0)
 ARGOCD_VERSION=6.7.9
 
 #
-# Create cluster(s)
+# Create management cluster
 #
 k3d cluster create --config $BASE_DIR/config/management-cluster.yaml
 
@@ -21,6 +21,18 @@ kubectl create ingress argocd  --class=traefik --rule=/argocd*=argo-cd-argocd-se
 #
 kubectl apply -f $BASE_DIR/../boot-project.yaml
 kubectl apply -f $BASE_DIR/../boot-application.yaml
+
+#
+# Create tenant cluster(s)
+#
+k3d cluster create --config $BASE_DIR/config/tenant1-cluster.yaml --kubeconfig-switch-context=false
+
+#
+# Add tenant clusters(s)
+#
+kubens argocd
+argocd login --core
+argocd cluster add k3d-tenant1-cluster --name tenant1-cluster --yes
 
 #
 # Print login details

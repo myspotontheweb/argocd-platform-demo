@@ -13,7 +13,7 @@ System dependencies
 Install the following tools using [arkade](https://github.com/alexellis/arkade)
 
 ```
-ark get kubectl kubectx kubens helm k3d argocd
+ark get kubectl kubectx kubens helm k9s k3d argocd
 ```
 
 ### Installation

@@ -1,0 +1,9 @@
+apiVersion: k3d.io/v1alpha5
+kind: Simple 
+metadata:
+  name: tenant1-cluster
+servers: 1
+agents: 1 
+kubeAPI: 
+  host: "host.k3d.internal"
+  hostPort: "6446" 
