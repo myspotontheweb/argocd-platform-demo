@@ -11,7 +11,7 @@ ARGOCD_VERSION=6.7.9
 k3d cluster create --config $BASE_DIR/config/pilot-cluster.yaml
 
 #
-# Install ArgoCD
+# Install ArgoCD + configure an ingress to expose without tls
 #
 helm upgrade --install argo-cd argo-cd --repo https://argoproj.github.io/argo-helm --version $ARGOCD_VERSION -n argocd --create-namespace --set configs.params."server\.insecure"=true --set configs.params."server\.rootpath"=/argocd --wait
 kubectl create ingress argocd  --class=traefik --rule=/argocd*=argo-cd-argocd-server:80 --annotation ingress.kubernetes.io/ssl-redirect=false -n argocd
