@@ -19,7 +19,7 @@ spec:
           valuesObject:
             installCRDs: true
       destination:
-        server: https://kubernetes.default.svc
+        server: '{{server}}'
         namespace: 'cert-manager'
       syncPolicy:
         automated:
