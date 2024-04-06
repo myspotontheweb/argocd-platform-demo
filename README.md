@@ -24,26 +24,6 @@ Bootstrap the K8s cluster(s)
 ./bootstrap/k3d/run.sh
 ```
 
-Deploy services to the cluster
-
-```
-#
-# Login
-#
-kubens argocd
-argocd login --core
-
-#
-# Create the bootstrap application
-#
-argocd app create bootstrap-services \
-  --repo https://github.com/myspotontheweb/argocd-platform-demo.git \
-  --path services \
-  --dest-server https://kubernetes.default.svc \
-  --dest-namespace argocd \
-  --sync-policy automated
-```
-
 ### Execution
 
 ## Help
