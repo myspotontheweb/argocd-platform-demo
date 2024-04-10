@@ -8,7 +8,7 @@ ARGOCD_VERSION=6.7.9
 #
 # Create management cluster
 #
-k3d cluster create --config $BASE_DIR/config/management-cluster.yaml
+k3d cluster create --config $BASE_DIR/config/management.yaml
 
 #
 # Install ArgoCD + configure an ingress to expose without tls
@@ -25,14 +25,14 @@ kubectl apply -f $BASE_DIR/../boot-application.yaml
 #
 # Create tenant cluster(s)
 #
-k3d cluster create --config $BASE_DIR/config/tenant1-cluster.yaml --kubeconfig-switch-context=false
+k3d cluster create --config $BASE_DIR/config/tenant1-nonprod.yaml --kubeconfig-switch-context=false
 
 #
 # Add tenant clusters(s)
 #
 kubens argocd
 argocd login --core
-argocd cluster add k3d-tenant1-cluster --name tenant1-cluster --yes
+argocd cluster add k3d-tenant1-nonprod --name tenant1-nonprod --yes
 
 #
 # Print login details
