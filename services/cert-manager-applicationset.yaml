@@ -7,7 +7,10 @@ spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
   generators:
-  - clusters: {}
+  - clusters:
+      selector:
+        matchLabels:
+          argocd.argoproj.io/secret-type: cluster
   template:
     metadata:
       name: '{{.name}}-cert-manager'
