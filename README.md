@@ -29,8 +29,9 @@ Bootstrap the K8s cluster(s)
 ### Cleanup
 
 Assuming you used the k3d bootstrap
+
 ```
-k3d cluster list --no-headers | awk '{printf "k3d cluster delete %s\n",$1}'| bash
+k3d cluster list --no-headers | awk '{printf "k3d cluster delete %s\n",$1}' | bash
 ```
 
 ## Help
