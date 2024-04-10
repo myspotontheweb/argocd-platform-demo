@@ -25,7 +25,7 @@ spec:
             installCRDs: true
       destination:
         server: '{{.server}}'
-        namespace: 'cert-manager'
+        namespace: 'cert-manager-system'
       syncPolicy:
         automated:
           prune: true
