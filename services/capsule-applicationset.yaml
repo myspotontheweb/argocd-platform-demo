@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: capsule
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - clusters:
+      selector:
+        matchLabels:
+          argocd.argoproj.io/secret-type: cluster
+  template:
+    metadata:
+      name: '{{.name}}-capsule'
+    spec:
+      project: "platform"
+      source:
+        repoURL: https://projectcapsule.github.io/charts 
+        targetRevision: 0.6.2
+        chart: capsule
+        helm: {}
+      destination:
+        server: '{{.server}}'
+        namespace: 'capsule-system'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
