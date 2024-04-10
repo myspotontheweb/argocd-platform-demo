@@ -19,8 +19,7 @@ kubectl create ingress argocd --class=traefik --rule=/argocd*=argo-cd-argocd-ser
 #
 # Bootstrap platform services
 #
-kubectl apply -f $BASE_DIR/../boot-project.yaml
-kubectl apply -f $BASE_DIR/../boot-application.yaml
+kubectl apply -f $BASE_DIR/../manifests/
 
 #
 # Create tenant cluster(s)
