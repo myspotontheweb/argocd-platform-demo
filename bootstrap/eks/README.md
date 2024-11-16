@@ -2,7 +2,38 @@
 
 How to launch an AWS EKS cluster for working on this  demo
 
-# Software
+
+# Usage
+
+## Generate cluster configuration (Optional)
+
+```
+eksctl create cluster --name default-fargate --version 1.31 --region eu-west-1 --fargate --dry-run | grep -v "addonsConfig" > bootstrap/eks/config/default.yaml
+```
+
+Apply the work-around detailed here: [#8035](https://github.com/eksctl-io/eksctl/issues/8035)
+
+```
+cat <<EOF >> bootstrap/eks/config/default.yaml
+addonsConfig:
+  autoApplyPodIdentityAssociations: true
+EOF
+```
+
+## Launch cluster
+
+```
+export AWS_ACCESS_KEY_ID="XXXXXXXXXXXXXXXXXXXX"
+export AWS_SECRET_ACCESS_KEY="YYYYYYYYYYYYYYYYYYYY"
+export AWS_SESSION_TOKEN="ZZZZZZZZZZZZZZZZZZZZ"
+export AWS_REGION="eu-west-1"
+
+./bootstrap/eks/run.sh
+```
+
+# Miscellaneous
+
+## Required software
 
 aws
 
@@ -44,32 +75,4 @@ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stabl
 echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
 sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 kubectl version --client
-```
-
-# Usage
-
-## Generate cluster configuration (Optional)
-
-```
-eksctl create cluster --name default-fargate --version 1.31 --region eu-west-1 --fargate --dry-run | grep -v "addonsConfig" > bootstrap/eks/config/default.yaml
-```
-
-Apply the work-around detailed here: [#8035](https://github.com/eksctl-io/eksctl/issues/8035)
-
-```
-cat <<EOF >> bootstrap/eks/config/default.yaml
-addonsConfig:
-  autoApplyPodIdentityAssociations: true
-EOF
-```
-
-## Launch cluster
-
-```
-export AWS_ACCESS_KEY_ID="XXXXXXXXXXXXXXXXXXXX"
-export AWS_SECRET_ACCESS_KEY="YYYYYYYYYYYYYYYYYYYY"
-export AWS_SESSION_TOKEN="ZZZZZZZZZZZZZZZZZZZZ"
-export AWS_REGION="eu-west-1"
-
-./bootstrap/eks/run.sh
 ```
