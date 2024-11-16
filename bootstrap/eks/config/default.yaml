@@ -3,60 +3,24 @@ accessConfig:
 apiVersion: eksctl.io/v1alpha5
 availabilityZones:
 - eu-west-1b
-- eu-west-1a
 - eu-west-1c
+- eu-west-1a
 cloudWatch:
   clusterLogging: {}
+fargateProfiles:
+- name: fp-default
+  selectors:
+  - namespace: default
+  - namespace: kube-system
+  status: ""
 iam:
   vpcResourceControllerPolicy: true
-  withOIDC: true
+  withOIDC: false
 kind: ClusterConfig
 kubernetesNetworkConfig:
   ipFamily: IPv4
-managedNodeGroups:
-- amiFamily: AmazonLinux2
-  desiredCapacity: 2
-  disableIMDSv1: true
-  disablePodIMDS: false
-  iam:
-    withAddonPolicies:
-      albIngress: false
-      appMesh: false
-      appMeshPreview: false
-      autoScaler: false
-      awsLoadBalancerController: false
-      certManager: false
-      cloudWatch: false
-      ebs: false
-      efs: false
-      externalDNS: false
-      fsx: false
-      imageBuilder: false
-      xRay: false
-  instanceSelector: {}
-  labels:
-    alpha.eksctl.io/cluster-name: default-fargate1
-    alpha.eksctl.io/nodegroup-name: ng-43b36a94
-  maxSize: 2
-  minSize: 2
-  name: ng-43b36a94
-  privateNetworking: false
-  releaseVersion: ""
-  securityGroups:
-    withLocal: null
-    withShared: null
-  ssh:
-    allow: false
-    publicKeyPath: ""
-  tags:
-    alpha.eksctl.io/nodegroup-name: ng-43b36a94
-    alpha.eksctl.io/nodegroup-type: managed
-  volumeIOPS: 3000
-  volumeSize: 80
-  volumeThroughput: 125
-  volumeType: gp3
 metadata:
-  name: default-fargate1
+  name: default-fargate
   region: eu-west-1
   version: "1.31"
 privateCluster:
