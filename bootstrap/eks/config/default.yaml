@@ -1,18 +1,20 @@
 accessConfig:
   authenticationMode: API_AND_CONFIG_MAP
+addonsConfig:
+  autoApplyPodIdentityAssociations: true
 apiVersion: eksctl.io/v1alpha5
 availabilityZones:
-- eu-west-1b
-- eu-west-1c
-- eu-west-1a
+  - eu-west-1c
+  - eu-west-1b
+  - eu-west-1a
 cloudWatch:
   clusterLogging: {}
 fargateProfiles:
-- name: fp-default
-  selectors:
-  - namespace: default
-  - namespace: kube-system
-  status: ""
+  - name: fp-default
+    selectors:
+      - namespace: default
+      - namespace: kube-system
+    status: ""
 iam:
   vpcResourceControllerPolicy: true
   withOIDC: false
@@ -35,5 +37,3 @@ vpc:
   manageSharedNodeSecurityGroupRules: true
   nat:
     gateway: Single
-addonsConfig:
-  autoApplyPodIdentityAssociations: true

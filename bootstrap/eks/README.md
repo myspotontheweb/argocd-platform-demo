@@ -2,23 +2,17 @@
 
 How to launch an AWS EKS cluster for working on this  demo
 
-
 # Usage
 
 ## Generate cluster configuration (Optional)
 
 ```
-eksctl create cluster --name default-fargate --version 1.31 --region eu-west-1 --fargate --dry-run | grep -v "addonsConfig" > bootstrap/eks/config/default.yaml
+eksctl create cluster --name default-fargate --version 1.31 --region eu-west-1 --fargate --dry-run | yq '.addonsConfig.autoApplyPodIdentityAssociations=true' > bootstrap/eks/config/default.yaml
 ```
 
-Apply the work-around detailed here: [#8035](https://github.com/eksctl-io/eksctl/issues/8035)
+Note:
 
-```
-cat <<EOF >> bootstrap/eks/config/default.yaml
-addonsConfig:
-  autoApplyPodIdentityAssociations: true
-EOF
-```
+* Applied the work-around detailed here: [#8035](https://github.com/eksctl-io/eksctl/issues/8035)
 
 ## Launch cluster
 
@@ -75,4 +69,11 @@ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stabl
 echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
 sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 kubectl version --client
+```
+
+yq
+
+```
+curl -LO https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+sudo install -o root -g root -m 0755 yq_linux_amd64 /usr/local/bin/yq
 ```
