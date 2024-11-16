@@ -54,7 +54,7 @@ kubectl version --client
 eksctl create cluster --name default-fargate --version 1.31 --region eu-west-1 --fargate --dry-run | grep -v "addonsConfig" > bootstrap/eks/config/default.yaml
 ```
 
-Apply the work-around detailed here: [](https://github.com/eksctl-io/eksctl/issues/8035)
+Apply the work-around detailed here: [#8035](https://github.com/eksctl-io/eksctl/issues/8035)
 
 ```
 cat <<EOF >> bootstrap/eks/config/default.yaml
