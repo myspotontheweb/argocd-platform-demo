@@ -1,0 +1,29 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: karpenter-test6
+  region: eu-west-1
+  version: "1.31"
+  tags:
+    karpenter.sh/discovery: karpenter-test6  # Same as cluster name
+
+iam:
+  withOIDC: true
+
+#
+# Issue: https://github.com/aws/karpenter-provider-aws/issues/6818
+#
+karpenter:
+  version: '1.0.8' # Exact version must be provided
+  createServiceAccount: true # default is false
+  withSpotInterruptionQueue: true # adds all required policies and rules for supporting Spot Interruption Queue, default is false
+
+fargateProfiles:
+  - name: control-plane
+    selectors:
+      - namespace: kube-system
+      - namespace: karpenter
+ 
+addonsConfig:
+  autoApplyPodIdentityAssociations: true

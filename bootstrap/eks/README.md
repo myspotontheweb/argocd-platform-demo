@@ -71,6 +71,15 @@ sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 kubectl version --client
 ```
 
+helm
+
+```
+curl -LO https://get.helm.sh/helm-v3.16.3-linux-amd64.tar.gz
+tar zxvf helm-v3.16.3-linux-amd64.tar.gz
+sudo install -o root -g root -m 0755 linux-amd64/helm /usr/local/bin/helm
+helm version
+```
+
 yq
 
 ```
