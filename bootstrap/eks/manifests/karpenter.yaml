@@ -38,7 +38,7 @@ spec:
   role: "KarpenterNodeRole-karpenter-test5" 
   subnetSelectorTerms:
     - tags:
-        karpenter.sh/discovery: "karpenter-test5" 
+        karpenter.sh/discovery: "karpenter-test6" 
   securityGroupSelectorTerms:
     - tags:
-        karpenter.sh/discovery: "karpenter-test5" 
+        karpenter.sh/discovery: "karpenter-test6" 
