@@ -1,13 +1,10 @@
 #
-# k3d cluster create tenant1-nonprod --api-port host.k3d.internal:6446 --port "8081:80@loadbalancer" --servers 1 --agents 1
+# k3d cluster create tenant1-nonprod --port "8081:80@loadbalancer" --servers 1 --agents 1
 #
 apiVersion: k3d.io/v1alpha5
 kind: Simple 
 metadata:
   name: tenant1-nonprod
-kubeAPI: 
-  host: "host.k3d.internal"
-  hostPort: "6446"
 ports:
   - port: 8081:80
     nodeFilters:
