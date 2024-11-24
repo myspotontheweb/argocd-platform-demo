@@ -1,9 +1,10 @@
+#
+# k3d cluster create management --api-port host.k3d.internal:6445 --port "8080:80@loadbalancer" --servers 1 --agents 2
+#
 apiVersion: k3d.io/v1alpha5
 kind: Simple 
 metadata:
   name: management
-servers: 1
-agents: 2 
 kubeAPI: 
   host: "host.k3d.internal"
   hostPort: "6445" 
@@ -11,3 +12,5 @@ ports:
   - port: 8080:80 
     nodeFilters:
       - loadbalancer
+servers: 1
+agents: 2
